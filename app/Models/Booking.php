@@ -24,6 +24,8 @@ class Booking extends Model
         'total_price',
         'item_id',
         'user_id',
+        'status_motor',
+        'denda',
     ];
 
     protected $dates = [
@@ -40,4 +42,28 @@ class Booking extends Model
     {
         return $this->belongsTo(User::class);
     }
+    
+    // public function calculateFine()
+    // {
+    //     // Ambil tanggal hari ini
+    //     $today = now();
+
+    //     // Hanya hitung denda jika status booking belum selesai dan tanggal akhir sudah lewat
+    //     if ($this->status !== 'completed' && $this->end_date < $today) {
+    //         // Hitung selisih hari dari tanggal akhir
+    //         $daysLate = $this->end_date->diffInDays($today);
+
+    //         // Harga denda per hari (misalnya: Rp 10.000 per hari)
+    //         $finePerDay = 50000;
+
+    //         // Hitung total denda
+    //         $totalFine = $daysLate * $finePerDay;
+
+    //         return $totalFine;
+    //     }
+
+    //     return 0; // Tidak ada denda
+    // }
 }
+
+

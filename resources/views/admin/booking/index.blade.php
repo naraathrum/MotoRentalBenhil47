@@ -44,8 +44,8 @@
             name: 'end_date'
           },
           {
-            data: 'status',
-            name: 'status'
+            data: 'status_motor',
+            name: 'status_motor'
           },
           {
             data: 'payment_status',
@@ -54,6 +54,17 @@
           {
             data: 'total_price',
             name: 'total_price'
+          },
+          {
+            data: 'denda',
+            name: 'denda',
+            render: function(data, type, row) {
+              if (data === null || data === undefined) {
+                return 'Belum ada denda';
+              } else {
+                return data;
+              }
+            }
           },
           {
             data: 'action',
@@ -80,9 +91,10 @@
                 <th>Item</th>
                 <th>Mulai</th>
                 <th>Selesai</th>
-                <th>Status Booking</th>
+                <th>Status Motor</th>
                 <th>Status Pembayaran</th>
                 <th>Total Dibayar</th>
+                <th>Denda</th>
                 <th style="max-width: 1%">Aksi</th>
               </tr>
             </thead>

@@ -40,6 +40,8 @@ return new class extends Migration
             $table->foreignId('item_id')->constrained();
             $table->foreignId('user_id')->constrained();
 
+            $table->integer('denda')->nullable();
+
             $table->softDeletes();
             $table->timestamps();
         });

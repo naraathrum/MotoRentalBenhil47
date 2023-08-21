@@ -23,8 +23,7 @@ class PaymentController extends Controller
         $bookings = booking::findOrFail($id);
         $bookings->payment_method = $request->payment_method;
         
-        // $this->getSnapRedirect($request,$bookings);
-        // return redirect()->route('front.payment.success');
+
 
         if ($request->payment_method == 'midtrans') {
             // Call Midtrans API
@@ -90,8 +89,7 @@ class PaymentController extends Controller
             // Total price in Rupiah
             $totalPrice = $bookings->total_price; // Tidak melakukan konversi
 
-            // ...
-
+    
             // Create array for send to API
             $midtransParams = [
                 'transaction_details' => [
@@ -120,8 +118,7 @@ class PaymentController extends Controller
 
     public function success(Request $request)
     {
-        // $serverKey = config('midtrans.server_key');
-        // $hashed = hash()
+     
         return view('success');
     }
 }

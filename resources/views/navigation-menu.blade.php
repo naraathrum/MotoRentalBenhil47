@@ -1,38 +1,39 @@
-<nav x-data="{ open: false }" class="bg-grey">
+<nav x-data="{ open: false }" class="bg-navbar">
     <!-- Primary Navigation Menu -->
     <div class="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
-        <div class="flex justify-between h-16">
+        <div class="flex justify-between h-30">
             <div class="flex">
                 <!-- Logo -->
                 <div class="flex items-center shrink-0">
                     <a href="{{ route('admin.dashboard') }}">
-                        <x-jet-application-mark class="block w-auto h-9" />
+                        <img src="/images/logoo.png" class="lg:w-[80px]" alt="stream" />
                     </a>
                 </div>
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-jet-nav-link href="{{ route('admin.dashboard') }}" :active="request()->routeIs('admin.dashboard')">
-                        {{ __('Dashboard') }}
+                    <x-jet-nav-link href="{{ route('admin.dashboard') }}" :active="request()->routeIs('admin.dashboard')" class="text-white">
+                        {{ __('Dashboard') }} 
                     </x-jet-nav-link>
                 </div>
+
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-jet-nav-link href="{{ route('admin.item.index') }}" :active="request()->routeIs('admin.item.index')">
+                    <x-jet-nav-link href="{{ route('admin.item.index') }}" :active="request()->routeIs('admin.item.index')" class="text-white">
                         {{ __('Item') }}
                     </x-jet-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-jet-nav-link href="{{ route('admin.brand.index') }}" :active="request()->routeIs('admin.brand.index')">
+                    <x-jet-nav-link href="{{ route('admin.brand.index') }}" :active="request()->routeIs('admin.brand.index')" class="text-white">
                         {{ __('Brand') }}
                     </x-jet-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-jet-nav-link href="{{ route('admin.type.index') }}" :active="request()->routeIs('admin.type.index')">
-                        {{ __('Type') }}
+                    <x-jet-nav-link href="{{ route('admin.type.index') }}" :active="request()->routeIs('admin.type.index')" class="text-white">
+                        {{ __('Tahun') }}
                     </x-jet-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-jet-nav-link href="{{ route('admin.booking.index') }}" :active="request()->routeIs('admin.booking.index')">
+                    <x-jet-nav-link href="{{ route('admin.booking.index') }}" :active="request()->routeIs('admin.booking.index')" class="text-white">
                         {{ __('Booking') }}
                     </x-jet-nav-link>
                 </div>

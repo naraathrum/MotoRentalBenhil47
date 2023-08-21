@@ -60,38 +60,10 @@ class MidtransCallbackController extends Controller
             // TODO Set payment status in merchant's database to 'expire'
             $bookings->payment_status = 'failed';
         }
-
-
-        // if ($status == 'capture') {
-        //     if ($type == 'credit_card') {
-        //         if ($fraud == 'challenge') {
-        //             $bookings->payment_status = 'pending';
-        //         } else {
-        //             $bookings->payment_status = 'success';
-        //         }
-        //     }
-        // } else if ($status == 'settlement') {
-        //     $bookings->payment_status = 'success';
-        // } else if ($status == 'pending') {
-        //     $bookings->payment_status = 'success';
-        // } else if ($status == 'deny') {
-        //     $bookings->payment_status = 'cancelled';
-        // } else if ($status == 'expire') {
-        //     $bookings->payment_status = 'cancelled';
-        // } else if ($status == 'cancel') {
-        //     $bookings->payment_status = 'cancelled';
-        // }
-
-        // Simpan transaksi
+        
         $bookings->save();
 
-        // Return response
-        // return response()->json([
-        //     'meta' => [
-        //         'code' => 200,
-        //         'message' => 'Midtrans Notification Success'
-        //     ]
-        // ]);
+     
         return redirect()->route('payment.success');
     }
 

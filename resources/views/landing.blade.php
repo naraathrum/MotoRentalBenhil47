@@ -258,11 +258,14 @@
           Tunggangan Setia, Motor!
         </h2>
         <p class="text-base text-subtlePars">Kamu dapat mengembailkan motor setelah selesai meminjam.</p>
+        <br>
+        <p class="text-base text-subtlePars" style="color: white;">*Denda perhari Rp 30000.</p>
+
       </header>
       <!-- Button Primary -->
       <div class="p-1 rounded-full bg-dadada w-max">
         @if($isbtndisable)
-          <a class="btn-primary disabled:opacity-50">
+          <a class="btn-primary disabled:opacity-50 "  >
             <p class="transition-all duration-[320ms] translate-x-3 group-hover:-translate-x-1">
               Return Motor
             </p>
@@ -271,7 +274,7 @@
                 alt="">
           </a>
         @else
-          <a href="{{ route('front.returnMotor') }}" class="btn-primary" onclick="showAlert()">
+          <a href="{{ route('front.returnMotor') }}" class="btn-primary">
             <p class="transition-all duration-[320ms] translate-x-3 group-hover:-translate-x-1">
               Return Motor
             </p>
@@ -287,13 +290,6 @@
     </div>
   </div>
 </section>
-
-<script>
-  function showAlert() {
-    alert("Motor sudah dikembalikan.");
-  }
-</script>
-
   
   <section class=" relative py-[40px] bg-lalala "id="mapss">
     <div class="w-full flex h-[400px] px-4 sm:px-24">

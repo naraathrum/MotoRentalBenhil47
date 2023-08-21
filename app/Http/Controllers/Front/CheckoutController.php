@@ -38,17 +38,6 @@ class CheckoutController extends Controller
 
         // Count the number of days between start_date and end_date
         $days = $start_date->diffInDays($end_date);
-
-        // Calculate penalty if end_date is overdue
-        $current_date = Carbon::now(); // Tanggal saat ini
-        $penalty_per_day = 50000; // Denda 50.000 per hari
-        
-        if ($end_date > $current_date) {
-            $days_overdue = $end_date->diffInDays($current_date);
-            $penalty_amount = $days_overdue * $penalty_per_day;
-        } else {
-            $penalty_amount = 0;
-        }
         
         // Get the item
         $item = Item::whereSlug($slug)->firstOrFail();
@@ -68,31 +57,48 @@ class CheckoutController extends Controller
             'city' => $request->city,
             'zip' => $request->zip,
             'user_id' => auth()->user()->id,
-            'total_price' => $total_price
+            'total_price' => $total_price,
+            'status_motor' => 'Dipake', // Set status motor
             
         ]);
-
-        // Update the status of the item to 0
-        // $item->update([
-        //     'status' => 0
-        // ]);
-
+         
         return redirect()->route('front.payment', $booking->id);
-        // return view('checkout', [
-        //     'penaltyAmount' => $penalty_amount]);
+     
     }
-    public function returnMotor(Request $request)
+//     
+public function returnMotor(Request $request)
 {
-    $bookings = Booking::where('user_id', Auth::id())->get();
+    $userId = Auth::id();
+    $currentDate = now();
 
-    // Check if the user has previous bookings, then delete them
-    if ($bookings->isNotEmpty()) {
-        foreach ($bookings as $booking) {
-            $booking->delete();
+    // Mengambil semua booking yang dimiliki oleh user dengan user_id tertentu
+    $bookings = Booking::where('user_id', $userId)->get();
+
+    foreach ($bookings as $booking) {
+        if ($booking->end_date < $currentDate) {
+            // Menghitung selisih hari antara end_date dan tanggal sekarang
+            $daysLate = $currentDate->diffInDays($booking->end_date);
+
+            // Menghitung denda (30000 per hari keterlambatan)
+            $denda = 30000 * $daysLate;
+
+            // Update kolom 'denda' dalam booking dengan nilai denda yang dihitung
+            $booking->update(['denda' => $denda]);
+            
+            // Update status pembayaran jika belum dibayar (opsional)
+            if ($booking->payment_status === 'pending') {
+                $booking->update(['payment_status' => 'late']);
+            }
+
+            // Update status motor menjadi 'Dikembalikan'
+            
         }
+        $booking->update(['status_motor' => 'Dikembalikan']);
     }
 
-    return redirect()->route('front.index');
+    return redirect()->route('front.index')->with('success', 'Motor berhasil dikembalikan');
 }
 
+
+    
 }
